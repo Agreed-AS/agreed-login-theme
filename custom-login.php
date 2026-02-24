@@ -4,6 +4,7 @@ Plugin Name: Agreed Custom Login Theme
 Description: Custom login theme for websites made by Agreed AS
 Version: 1.0
 Author: Agreed AS
+Author URI: https://agreed.no
 */
 
 add_action('login_enqueue_scripts', function() {
