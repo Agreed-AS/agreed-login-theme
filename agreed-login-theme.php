@@ -7,30 +7,17 @@ Author: Agreed AS
 Author URI: https://agreed.no
 */
 
-require_once plugin_dir_path( __FILE__ ) . 'includes/admin-menu.php';
+ if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-add_action('login_enqueue_scripts', function() {
+//Stores the "root" of the plugin for referencing later
+define( 'PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
-	wp_enqueue_style(
-		'Agreed Custom Login Theme',
-		plugins_url('public/css/custom-login.css', __FILE__),
-		array(),
-		'1.0'
-	);
+//Includes different classes
+include plugin_dir_path( __FILE__ ) . 'includes/class-agreed-login-theme-settings.php';
+include plugin_dir_path( __FILE__ ) . 'includes/class-agreed-login-theme-styling.php';
 
-	wp_enqueue_script(
-		'Agreed Custom Login Theme',
-		plugins_url('public/js/custom-login.js', __FILE__),
-		array('jquery'),
-		'1.0',
-		true
-	);
-});
-
-add_filter('login_headerurl', function() {
-    return home_url();
-});
-
-add_filter('login_headertext', function() {
-    return get_bloginfo('name');
-});
+//Initiates different classes
+new AgreedLoginThemeSetting();
+new AgreedLoginThemeStyling();
