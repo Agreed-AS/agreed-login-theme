@@ -19,7 +19,14 @@ body.login {
 }
 
 .login #login {
-    width: 450px;
+    width: auto;
+    padding: 30px 10px 0px 10px;
+}
+
+@media (min-width: 600px) {
+    .login #login {
+        width: 450px;
+    }
 }
 
 #loginform, #lostpasswordform {
@@ -27,6 +34,10 @@ body.login {
     flex-wrap: wrap;
     border-radius: 10px;
     align-items: center;
+}
+
+#loginform p {
+    width: 100%;
 }
 
 .user-pass-wrap {
