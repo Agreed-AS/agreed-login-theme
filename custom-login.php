@@ -2,10 +2,12 @@
 /*
 Plugin Name: Agreed Custom Login Theme
 Description: Custom login theme for websites made by Agreed AS
-Version: 1.0
+Version: 1.1
 Author: Agreed AS
 Author URI: https://agreed.no
 */
+
+require_once plugin_dir_path( __FILE__ ) . 'includes/admin-menu.php';
 
 add_action('login_enqueue_scripts', function() {
 
