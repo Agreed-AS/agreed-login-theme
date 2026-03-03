@@ -24,6 +24,9 @@ class AgreedLoginThemeStyling {
                 :root {
                     --background_color: #fff !important;
                 }
+                #login h1 a, .login h1 a {
+                    background-image: url('https://media.agreed.no/agreed-t-n-black.png');
+                }
             ";
             wp_add_inline_style( 'agreed-custom-theme', $light_vars );
         }
