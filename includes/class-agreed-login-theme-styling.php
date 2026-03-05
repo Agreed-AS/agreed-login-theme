@@ -18,10 +18,11 @@ class AgreedLoginThemeStyling {
             '1.0'
         );
 
-        //Checks if the option for the theme switcher button is other than the value "dark". This gets updated when you switch the button in the admin menu 
         $theme_mode = get_option( 'agreed_theme_color');
-        if ($theme_mode !== 'dark') {
-            //CSS changes which will be overwritten if the value is other than "dark"
+        $theme_logo = get_option('agreed_theme_custom_logo');
+        //Checks if the option for the theme switcher button is "light". This gets updated when you switch the button in the admin menu 
+        if ($theme_mode === 'light' && empty($theme_logo)) {
+            //CSS changes which will be overwritten if the value is "light" and NO custom log has been set
             $light_vars = "
                 :root {
                     --background_color: #fff !important;
@@ -32,6 +33,26 @@ class AgreedLoginThemeStyling {
             ";
             //Applies the CSS
             wp_add_inline_style( 'agreed-custom-theme', $light_vars );
+        } elseif ($theme_mode === 'light' && !empty($theme_logo)) {
+            //CSS changes which will be overwritten if the value is "light" and when a custom logo has been set
+            $light_vars = "
+                :root {
+                    --background_color: #fff !important;
+                }
+            ";
+            //Applies the CSS
+            wp_add_inline_style( 'agreed-custom-theme', $light_vars );
+        };
+
+        //Checks if a custom logo has been set, if it is then make that the active logo
+        if (!empty($theme_logo)) {
+            $custom_logo = "
+                #login h1 a, .login h1 a {
+                    --background-image: url($theme_logo);
+                }
+            ";
+
+            wp_add_inline_style( 'agreed-custom-theme', $custom_logo );
         }
 
         //Loads the correct JS file to activate some logic for the wp-login.php site
