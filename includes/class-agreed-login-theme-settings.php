@@ -88,10 +88,5 @@ class AgreedLoginThemeSetting {
     input:checked + .slider:before { transform: translateX(26px); }
     </style>
         <?php
-        //DEBUG
-        echo 'Theme color: ' . get_option('agreed_theme_color');
-        echo '<br>';
-        echo 'Theme logo: ' . get_option('agreed_theme_custom_logo');
-        //END OF DEBUG
     }
 }
