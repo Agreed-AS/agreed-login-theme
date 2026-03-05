@@ -2,7 +2,7 @@
 /*
 Plugin Name: Agreed Custom Login Theme
 Description: Custom login theme for websites made by Agreed AS
-Version: 1.7
+Version: 1.8
 Author: Agreed AS
 Author URI: https://agreed.no
 */
