@@ -7,28 +7,32 @@
 class AgreedLoginThemeSetting {
     public function __construct() {
         add_action('admin_menu', array($this, 'create_settings_menu'));
-        add_action('admin_init', array($this,'render_settings_menu'));
+        add_action('admin_init', array($this,'init_settings_menu'));
     }
 
+    //Creates the settings menu/page for this plugin. It will be under the default "Settings" menu
     public function create_settings_menu() {
         add_options_page(
-            'Agreed Login Theme Settings',
-            'Agreed Login Theme',
-            'manage_options',
-            'agreed-login-theme',
-            array($this, 'agreed_login_theme_settings'),
-            999
+            'Agreed Login Theme Settings', //Title for the actual settings page
+            'Agreed Login Theme', //Name for the left menu
+            'manage_options', //Which permission required to view this page
+            'agreed-login-theme', //Settings page slug
+            array($this, 'render_login_theme_settings'), //The function to run when this hook runs
+            999 //The position in the menu order this item should appear
         );
     }
 
-    public function render_settings_menu() {
+    public function init_settings_menu() {
+        //Creates a option/setting group and name. 
         register_setting('agreed_login_theme_settings', 'agreed_theme_color');
     }
 
-    public function agreed_login_theme_settings() {
+    //Creates the HTML for the theme menu
+    public function render_login_theme_settings() {
         ?>
         <div class="wrap">
         <h1>Agreed Login Theme Settings</h1>
+        <!--Creates the button/switch used to toggle light/dark mode-->
         <form method="post" action="options.php">
             <?php
             settings_fields('agreed_login_theme_settings');
@@ -51,6 +55,7 @@ class AgreedLoginThemeSetting {
         </form>
     </div>
     
+    <!--Styling for the button/switch-->
     <style>
     .switch { position: relative; display: inline-block; width: 50px; height: 24px; }
     .switch input { opacity: 0; width: 0; height: 0; }
