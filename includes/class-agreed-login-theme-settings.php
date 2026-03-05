@@ -88,6 +88,5 @@ class AgreedLoginThemeSetting {
     input:checked + .slider:before { transform: translateX(26px); }
     </style>
         <?php
-        echo "<p>testing!</p>";
     }
 }
